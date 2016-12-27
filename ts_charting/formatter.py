@@ -3,7 +3,8 @@ import math
 import numpy as np
 import pandas as pd
 import matplotlib.ticker as ticker
-from pandas import datetools, DatetimeIndex
+from pandas import DatetimeIndex
+from dateutil import relativedelta
 from pandas.tseries.resample import _get_range_edges
 import pandas.lib as lib
 
@@ -99,7 +100,7 @@ class TimestampLocator(ticker.Locator):
         return xticks
 
     def infer_scale(self, dmin, dmax):
-        delta = datetools.relativedelta(dmax, dmin)
+        delta = relativedelta.relativedelta(dmax,dmin)
 
         numYears = (delta.years * 1.0) 
         numMonths = (numYears * 12.0) + delta.months
